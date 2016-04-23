@@ -24,6 +24,9 @@ var sequelize = new Sequelize(
      port:config.port,
      dialect: config.driver,
      logging: console.log,
+     dialectOptions: {
+        socketPath: "/var/run/mysqld/mysqld.sock"
+    },
      define: {
 	timestamps: false
      }
