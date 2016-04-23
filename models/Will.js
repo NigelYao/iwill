@@ -28,7 +28,8 @@ var sequelize = new Sequelize(
         socketPath: "/var/run/mysqld/mysqld.sock"
     },
      define: {
-	timestamps: false
+	timestamps: false,
+	paranoid: true
      }
 	}
 );
