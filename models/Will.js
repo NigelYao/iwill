@@ -10,9 +10,13 @@ if(process.env.MYSQL_INSTANCE_NAME){
 	config.password = process.env.MYSQL_PASSWORD;
 	config.user = process.env.MYSQL_USERNAME;
 	config.driver = "mysql";
+}else if (process.env.PRODUCTION){
+	config = require('../config/db.config.production.js');
 }else{
 	config = require('../config/db.config.dev.js');
 }
+
+console.log("port:" + config.port + ",address:" + config.addr + ",database:" + config.database + ",user=" + config.user);
 
 // initialize database connection
 var sequelize = new Sequelize(
@@ -25,7 +29,7 @@ var sequelize = new Sequelize(
      dialect: config.driver,
      logging: console.log,
      dialectOptions: {
-        socketPath: "/var/run/mysqld/mysqld.sock"
+        socketPath: config.addr
     },
      define: {
 	timestamps: false,
