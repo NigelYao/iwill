@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var config = null;
 if(process.env.MYSQL_INSTANCE_NAME){
 	config = {};
-	config.port = process.env.MYSQL_PORT;
+	config.port = process.env.MYSQL_PORT_3306_TCP_PORT;
 	config.addr = process.env.MYSQL_PORT_3306_TCP_ADDR;
 	config.database = process.env.MYSQL_INSTANCE_NAME;
 	config.password = process.env.MYSQL_PASSWORD;
