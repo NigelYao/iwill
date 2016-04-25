@@ -39,10 +39,11 @@ console.log("port:" + config.port + ",address:" + config.addr + ",database:" + c
 // );
 
 var sequelize = new Sequelize('26Hf0WEIlRUASOxr', 'ucTMBnIVwoYf2hep', 'p9AqDp37oULtSlBuh', 
-	{host : '10.10.26.58', port : '3306', dialect : 'mysql'},
-	define: {
-		timestamps: false
-	});
+		{host : '10.10.26.58', port : '3306', dialect : 'mysql',define: {
+				timestamps: false
+			}
+		}
+	);
 
 var crypto = require('crypto');
 var DataTypes = require("sequelize");
