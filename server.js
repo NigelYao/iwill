@@ -16,8 +16,8 @@ var router = express.Router();
 router.route('/will')
 .post(function(req, res) {
 
-	var pos = req.params.pos;
-	var neg = req.params.neg;
+	var pos = req.params.pos || req.body.pos;
+	var neg = req.params.neg|| req.body.neg;
 	console.log(pos + "," + neg);
 
 	var code = generateCode();
