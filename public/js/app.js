@@ -1,5 +1,7 @@
 var state = "choose";
 
+var loading = false;
+
 (function(){
 
       var current = null;
@@ -45,6 +47,8 @@ var state = "choose";
 	});
 
 	$("#godie").click(function(){
+             if(loading == true) return;
+             
 		if(state == "result"){
 			var d = dialog({
 	content: '<div id="btn_group"><button id="btn_down">嘘</button>	<div id="btn_or"></div> <button id="btn_up">赞</button></div>',
@@ -75,6 +79,8 @@ var state = "choose";
 	});
 
 	$("#iwill").click(function(){
+            if(loading == true) return;
+
 		if(state == "choose"){
 			var willCount = parseFloat(current.i_will_count);
                    var dieCount = parseFloat(current.go_die_count);
@@ -87,6 +93,7 @@ var state = "choose";
                       });
 		}else{
 			$(".options").html("");
+                    loading = truel
 			$.getJSON("/will",function(data){
                           current = data;
 				
@@ -96,6 +103,7 @@ var state = "choose";
                           data.willRate = Math.ceil(willCount/totalCount * 100) ,data.dieRate = Math.ceil(dieCount/totalCount * 100);
                           var rendered = Mustache.render(template,data);
 				$(".options").html(rendered);
+                          loading = false;
 			});
 			$("#iwill").text("I Will");
 			$("#godie").text("我选择Go Die");
