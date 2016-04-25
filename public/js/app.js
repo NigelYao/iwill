@@ -62,10 +62,10 @@ var state = "choose";
                         });
                     });
 		}else{
-                   var willCount = parseInt(current.i_will_count);
-                   var dieCount = parseInt(current.go_die_count);
-                   var totalCount = willCount + dieCount;
-			result(Math.ceil(willCount/totalCount),Math.ceil(dieCount/totalCount));
+                   var willCount = parseFloat(current.i_will_count);
+                   var dieCount = parseFloat(current.go_die_count);
+                   var totalCount = parseFloat(willCount + dieCount);
+                   result(Math.ceil(willCount/totalCount * 100) ,Math.ceil(dieCount/totalCount * 100) );
                    $(".v_d_d").prepend("你和");
 			state = "result";
                     $.getJSON("/godie/"+current.code,function(data){
@@ -89,7 +89,12 @@ var state = "choose";
 			$(".options").html("");
 			$.getJSON("/will",function(data){
                           current = data;
-				var rendered = Mustache.render(template,data);
+				
+                          var willCount = parseFloat(data.i_will_count);
+                          var dieCount = parseFloat(data.go_die_count);
+                          var totalCount = parseFloat(willCount + dieCount);
+                          data.willRate = Math.ceil(willCount/totalCount * 100) ,data.dieRate = Math.ceil(dieCount/totalCount * 100) );
+                          var rendered = Mustache.render(template,data);
 				$(".options").html(rendered);
 			});
 			$("#iwill").text("I Will");
