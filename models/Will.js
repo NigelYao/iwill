@@ -19,24 +19,26 @@ if(process.env.MYSQL_INSTANCE_NAME){
 console.log("port:" + config.port + ",address:" + config.addr + ",database:" + config.database + ",user=" + config.user);
 
 // initialize database connection
-var sequelize = new Sequelize(
-	config.database,
-	config.user,
-	config.password,
-	{
-     host:config.addr,
-     port:config.port,
-     dialect: config.driver,
-     logging: console.log,
-     dialectOptions: {
-        socketPath: config.addr
-    },
-     define: {
-	timestamps: false,
-	paranoid: true
-     }
-	}
-);
+// var sequelize = new Sequelize(
+// 	config.database,
+// 	config.user,
+// 	config.password,
+// 	{
+//      host:config.addr,
+//      port:config.port,
+//      dialect: config.driver,
+//      logging: console.log,
+//      dialectOptions: {
+//         socketPath: config.addr
+//     },
+//      define: {
+// 	timestamps: false,
+// 	paranoid: true
+//      }
+// 	}
+// );
+
+var sequelize = new Sequelize('26Hf0WEIlRUASOxr', 'ucTMBnIVwoYf2hep', 'p9AqDp37oULtSlBuh', {host : '10.10.26.58', port : '3306', dialect : 'mysql'});
 
 var crypto = require('crypto');
 var DataTypes = require("sequelize");
