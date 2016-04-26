@@ -42,6 +42,10 @@ var loading = false;
 	  
 	$.getJSON(baseUrl,function(data){
              current = data;
+             var willCount = parseFloat(data.i_will_count);
+             var dieCount = parseFloat(data.go_die_count);
+             var totalCount = parseFloat(willCount + dieCount);
+             data.willRate = Math.ceil(willCount/totalCount * 100) ,data.dieRate = Math.ceil(dieCount/totalCount * 100);
 		var rendered = Mustache.render(template,data);
 		$(".options").html(rendered);
 	});
@@ -93,7 +97,7 @@ var loading = false;
                       });
 		}else{
 			$(".options").html("");
-                    loading = truel
+                    loading = true;
 			$.getJSON("/will",function(data){
                           current = data;
 				
